@@ -9,7 +9,8 @@ phases:
       - pip install -r requirements.txt	
   build:
     commands:
-
+      - echo "copy unzip.sh file..."
+      - cp unzip.sh unzip.sh
       - echo "Creating zip archive..."
       - zip scripts.zip *.py
   post_build:

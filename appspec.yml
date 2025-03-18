@@ -5,6 +5,14 @@ files:
     destination: /home/ec2-user/app/Scripts
   - source: unzip.sh
     destination: /home/ec2-user/app/Scripts
+permissions:
+    - object: /home/ec2-user/app/Scripts
+      pattern: "*.*"
+      owner: ec2-user
+      group: ec2-user
+      mode: 755
+      type:
+        - file
 hooks:
   AfterInstall:
     - location: /home/ec2-user/app/Scripts/change_permission.sh

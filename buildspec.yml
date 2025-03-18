@@ -9,18 +9,13 @@ phases:
       - pip install -r requirements.txt	
   build:
     commands:
-      - echo "Creating /app directory..."
-      - mkdir app
       - echo "Creating zip archive..."
-      - zip app/ATS_gemini.zip ATS_gemini.py
-      - echo "Copying script to /app directory..."
-      - cp ATS_gemini.py app/
+      - zip scripts.zip *.py
   post_build:
     commands:
       - echo "Build completed."
-
+      
 artifacts:
   files:
-    - app/**/*
-  discard-paths: no
+    - scripts.zip
 

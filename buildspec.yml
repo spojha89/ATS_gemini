@@ -20,4 +20,5 @@ artifacts:
     - scripts.zip
     - unzip.sh
     - appspec.yml
+    - change_permission.sh
 

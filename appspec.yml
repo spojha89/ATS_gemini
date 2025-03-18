@@ -2,11 +2,11 @@ version: 0.0
 os: linux
 files:
   - source: scripts.zip
-    destination: /home/ec2-user/Scripts
+    destination: /home/ec2-user/app/Scripts
   - source: unzip.sh
-    destination: /home/ec2-user/Scripts
+    destination: /home/ec2-user/app/Scripts
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/Scripts/unzip.sh
+    - location: /home/ec2-user/app/Scripts/unzip.sh
       timeout: 300
       runas: ec2-user

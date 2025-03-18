@@ -3,13 +3,15 @@ os: linux
 files:
   - source: scripts.zip
     destination: /home/ec2-user/app/Scripts
+    runas: ec2-user
   - source: unzip.sh
     destination: /home/ec2-user/app/Scripts
+    runas: ec2-user
 hooks:
   AfterInstall:
     - location: /home/ec2-user/app/Scripts/change_permission.sh
       timeout: 300
-      runas: ec2-user  
+      runas: root  
     - location: /home/ec2-user/app/Scripts/unzip.sh
       timeout: 300
-      runas: ec2-user
+      runas: root

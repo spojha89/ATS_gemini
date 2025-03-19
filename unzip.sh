@@ -1,2 +1,3 @@
 #!/bin/bash
-unzip /home/ec2-user/app/Scripts/scripts.zip
+cd /home/ec2-user/Scripts # Or your destination path
+unzip scripts.zip

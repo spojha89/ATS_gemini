@@ -13,12 +13,9 @@ phases:
       - zip scripts.zip *.py
   post_build:
     commands:
-      - echo "Build completed."      
+      - echo "Build completed."
+      
 artifacts:
   files:
     - scripts.zip
     - unzip.sh
-    - appspec.yml
-    - change_permission.sh
-
-

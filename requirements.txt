@@ -4,3 +4,6 @@ pypdf2
 google.generativeai
 python-dotenv
 python-docx
+langchain
+langchain.openai
+langchain_community

@@ -1,13 +1,19 @@
 import streamlit as st
-import google.generativeai as genai
+from langchain_community.chat_models import ChatOpenAI
+from langchain.prompts import PromptTemplate
+from langchain import LLMChain
 import os
 from dotenv import load_dotenv
 import PyPDF2 as pdf
 from docx import Document
 
-load_dotenv()
-genai.configure(api_key=os.getenv("gemini_API_key"))
 
+load_dotenv()
+
+# api_key=os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"]='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'
+# os.environ["OPENAI_API_KEY"]=os.getenv("OPENAI_API_KEY")
+# print(os.getenv("OPENAI_API_KEY"))
 
 ##Function to read pdf file
 def read_pdf(file):
@@ -36,15 +42,18 @@ def read_docx(file):
             text+=str(print()) # New line after each row
 
 
+##Function to get Openai model response
+def get_openai_response():
 
-##Function to get Gemini model response
-def get_gemini_response(input):
-    model=genai.GenerativeModel("gemini-1.5-flash")
-    response=model.generate_content(input)
-    return response.text
+    prompt=PromptTemplate(input_variables=['text','jd'],template=prompt_template)
+    llm=ChatOpenAI(temperature=0.5,model_name='gpt-4o')
+    llm_chain=LLMChain(llm=llm,prompt=prompt)
+    response=llm_chain.run(text=text,jd=jd)
+
+    return response
 
 ##Define prompt
-input_prompt="""
+prompt_template="""
 
 Hey Act Like a skilled or very experience ATS(Application Tracking System)
 with a deep understanding of tech field,software engineering,data science ,data analyst
@@ -57,24 +66,25 @@ resume:{text}
 description:{jd}
 
 I want the response in one single string having the structure
-{{"JD Match":"%","MissingKeywords:[]","Profile Summary":""}}
+{{"JD Match":"%","MissingKeywords:[]","Profile Summary":""}} 
 
 """
 
 ##Streamlit App
-st.title("ATS evaluator with Gemini")
+st.title("ATS evaluator with OpenAI")
 jd=st.text_area("Mention job description")
-
-print(jd)
 
 uploaded_file=st.file_uploader("Select resume",type=["pdf","docx"])
 submit=st.button("Submit")
 
+text=''
+
 if submit:
     if uploaded_file is not None:
         if uploaded_file.type=="pdf":
-            text=read_pdf(uploaded_file)
+            text+=read_pdf(uploaded_file)
         elif uploaded_file.type=="docx":
-            text=read_docx(uploaded_file)
-        response=get_gemini_response(input_prompt)
+            text+=read_docx(uploaded_file)
+        print(text)
+        response=get_openai_response()
         st.subheader(response)

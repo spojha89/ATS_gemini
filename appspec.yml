@@ -16,6 +16,6 @@ permissions:
          - file
 hooks:
   AfterInstall:
-    - location: /home/ec2-user/app/Scripts/unzip.sh
+    - location: unzip.sh
       timeout: 300
       runas: ec2-user

@@ -15,9 +15,9 @@ permissions:
         - file
 hooks:
   AfterInstall:
-    - location: change_permission.sh
+    - location: /home/ec2-user/app/Scripts/change_permission.sh
       timeout: 300
       runas: ec2-user  
-    - location: unzip.sh
+    - location: /home/ec2-user/app/Scripts/unzip.sh
       timeout: 300
       runas: ec2-user

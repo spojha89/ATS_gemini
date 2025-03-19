@@ -5,6 +5,8 @@ files:
     destination: /home/ec2-user/app/Scripts
   - source: unzip.sh
     destination: /home/ec2-user/app/Scripts
+  - source: change_permission.sh
+    destination: /home/ec2-user/app/Scripts:wq
 permissions:
     - object: /home/ec2-user/app/Scripts
       pattern: "*.*"

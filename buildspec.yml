@@ -7,6 +7,8 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt	
+      - echo "Dos2unix ..."
+      - dos2unix *.*
   build:
     commands:
       - echo "Creating zip archive..."

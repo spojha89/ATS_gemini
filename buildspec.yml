@@ -7,17 +7,13 @@ phases:
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt	
-
   build:
     commands:
       - echo "Creating zip archive..."
       - zip scripts.zip *.py
-      - echo "Dos2unix ..."
-      - dos2unix *.*
   post_build:
     commands:
-      - echo "Build completed."
-      
+      - echo "Build completed."      
 artifacts:
   files:
     - scripts.zip

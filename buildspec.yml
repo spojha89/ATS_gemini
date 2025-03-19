@@ -19,3 +19,4 @@ artifacts:
   files:
     - scripts.zip
     - unzip.sh
+    - appspec.yml
